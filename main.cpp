@@ -49,7 +49,55 @@ int main()
         return 1;
     }
 
-    arq_coef << "CPU Utilization factor: " << coef;
+    arq_coef << "CPU Utilization factor: " << coef << std::endl;
+
+    do
+    {
+        if (coef < 0.26)
+        {
+            arq_coef << "System is Unnecessarily safe! (under 26%)";
+            break;
+        }
+
+        if (coef < 0.50)
+        {
+            arq_coef << "System is Very safe! (under 50%)";
+            break;
+        }
+
+        if (coef < 0.68)
+        {
+            arq_coef << "System is Safe! (under 68%)";
+            break;
+        }
+
+        if (coef == 0.69)
+        {
+            arq_coef << "System is on Limit! (on 69%)";
+            break;
+        }
+
+        if (coef < 0.82)
+        {
+            arq_coef << "System is on a questionable zone (70% ~ 82%)";
+            break;
+        }
+        if (coef < 0.99)
+        {
+            arq_coef << "System is on a dangerous zone! (83% ~ 99%)";
+            break;
+        }
+        if (coef == 1.00)
+        {
+            arq_coef << "System is on a Critical zone! (100%)";
+            break;
+        }
+        if (coef > 1.00)
+        {
+            arq_coef << "System is Overloaded zone! (>100%)";
+            break;
+        }
+    } while (1);
 
     std::cout << "Check 'coef.txt'!" << std::endl;
     return 0;
